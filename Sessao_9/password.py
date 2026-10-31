@@ -5,7 +5,7 @@ Neste ficheiro python vamos ler, verificar, converte para SHA-256
 from hashlib import sha256
 import time
 
-def convert_to_SHA256 (_text) -> str:
+def hash_password (_text) -> str:
     return sha256(_text.encode()).hexdigest()
 
 def checks(_text) -> bool:
@@ -19,7 +19,7 @@ def get_password() -> str:
     while(True):
         temp_input = input(">> ")
         if(checks(temp_input)):
-            return convert_to_SHA256(temp_input)
+            return hash_password(temp_input)
         else:
             time.sleep(2)
             print("A Palavra-Passe tem conter as regras indicadas em cima \n")
