@@ -1,25 +1,31 @@
 """
-Main Rule: No global variabels
-Neste ficheiro python vamos ler, verificar, converte para SHA-256
+    Neste ficheiro python vamos converte uma Palavra-Passe para SHA-256 e verificar se a os hash sao iguais
+
+    Para isso vamos importar sha256 na livraria hashlib
 """
 from hashlib import sha256
-import time
 
-def hash_password (_text) -> str:
-    return sha256(_text.encode()).hexdigest()
+"""
+    A funçao hash_password
 
-def checks(_text) -> bool:
-    return len(_text) >= 8 and any(ch.isdigit() for ch in _text) and any(ch.islower() for ch in _text) and any(ch.isupper() for ch in _text) and any(not ch.isalnum() for ch in _text)
+    Parametros:
+        pwd (str): Palavra-Passe introduzida pelo utilizador.
 
-def get_password() -> str:
-    print("Escreva uma Palavra-Passe. \n" \
-    "Com no minimo de 8 caracteres \n" \
-    "Com letras maiusculas e minusculas \n" \
-    "E com pelo menos um caracter especial \n")
-    while(True):
-        temp_input = input(">> ")
-        if(checks(temp_input)):
-            return hash_password(temp_input)
-        else:
-            time.sleep(2)
-            print("A Palavra-Passe tem conter as regras indicadas em cima \n")
+    Retorno:
+        Retorna o hash da Palavra-Passe.
+"""
+def hash_password (pwd: str) -> str:
+    return sha256(pwd.encode()).hexdigest()
+
+"""
+    A funçao check_password
+    
+    Parametros:
+        pwd (str): Palavra-Passe
+        pwd_hash (str): O hash da Palavra-Passe introduzida anteritormente pelo utilizador.
+
+    Retorno:
+        Retorna True se os hashs forem iguais, e False se nao forem.
+"""
+def check_password(pwd:str, pwd_hash:str) -> bool:
+    return sha256(pwd.encode()).hexdigest() == pwd_hash
