@@ -23,5 +23,3 @@ def get_password() -> str:
         else:
             time.sleep(2)
             print("A Palavra-Passe tem conter as regras indicadas em cima \n")
-
-print(get_password())
