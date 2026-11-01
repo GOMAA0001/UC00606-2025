@@ -1,31 +1,31 @@
-"""
-    Neste ficheiro python vamos converte uma Palavra-Passe para SHA-256 e verificar se a os hash sao iguais
+"""Neste ficheiro convertemos uma Palavra-Passe para SHA-256
+e verificamos se os hashes são iguais.
 
-    Para isso vamos importar sha256 na livraria hashlib
+Para isso importamos sha256 da biblioteca hashlib.
 """
 from hashlib import sha256
 
-"""
-    A funçao hash_password
 
-    Parametros:
+def hash_password(pwd: str) -> str:
+    """Devolve o hash SHA-256 de uma Palavra-Passe.
+
+    Parâmetros:
         pwd (str): Palavra-Passe introduzida pelo utilizador.
 
     Retorno:
-        Retorna o hash da Palavra-Passe.
-"""
-def hash_password (pwd: str) -> str:
+        str: hash SHA-256 da Palavra-Passe, em hexadecimal.
+    """
     return sha256(pwd.encode()).hexdigest()
 
-"""
-    A funçao check_password
-    
-    Parametros:
-        pwd (str): Palavra-Passe
-        pwd_hash (str): O hash da Palavra-Passe introduzida anteritormente pelo utilizador.
+
+def check_password(pwd: str, pwd_hash: str) -> bool:
+    """Verifica se uma Palavra-Passe corresponde a um hash.
+
+    Parâmetros:
+        pwd (str): Palavra-Passe a verificar.
+        pwd_hash (str): hash SHA-256 contra o qual se compara.
 
     Retorno:
-        Retorna True se os hashs forem iguais, e False se nao forem.
-"""
-def check_password(pwd:str, pwd_hash:str) -> bool:
-    return sha256(pwd.encode()).hexdigest() == pwd_hash
+        bool: True se os hashes forem iguais, False caso contrário.
+    """
+    return hash_password(pwd) == pwd_hash
