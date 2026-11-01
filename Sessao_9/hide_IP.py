@@ -1,3 +1,4 @@
+"""Função para mascarar endereços IP."""
 def mask_ip(ip: str) -> str:
     """Mascara um IP no formato a.b.c.d como a.***.***.d.
 
